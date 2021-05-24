@@ -1,0 +1,41 @@
+service: memoAsync
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-central-1
+  lambdaHashingVersion: 20201221
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+        Resource: '*'
+
+functions:
+  calculate:
+    handler: handler.calculate
+    events:
+      - http:
+          path: /api/calculate
+          method: get
+
+resources:
+  Resources:
+    SumTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: sumtable
