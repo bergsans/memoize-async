@@ -4,4 +4,4 @@ This is a learning project. I wanted to make a sort of logic equivalent to 'memo
 
 If you have an AWS account, an IAM user setup along with AWS credentials on your machine, you can deploy the application to a lambda using the serverless framework: `sls deploy`.
 
-[Read more at Here be seaswines](https://herebeseaswines.net/essays/2021-05-24-simple-asynchronous-memoizer).
+[Read more.](https://bergsans.github.io/essays/2021-05-24-simple-asynchronous-memoizer).
